@@ -153,6 +153,7 @@
     <string name="title_activity_manualpacking">Manual Packing</string>
     <string name="title_activity_ecom_packing">Ecom Packing</string>
     <string name="title_activity_ecom_bulk_packing">Ecom Bulk Packing</string>
+    <string name="title_activity_ecom_MarketPlace">Ecom Market Place</string>
     <!--Unloading -->
     <string name="vehicleNo">"Vehicle No. </string>
     <string name="storeRefNo">Store Ref.# </string>
@@ -300,6 +301,8 @@
     <string name="title_activity_stocktake">Stock take</string>
     <string name="rsn_printer">RSN Printer</string>
     <string name="flipkart_bulk_label_printer">Flipkart bulk label printer</string>
+    <string name="shipping_label_printer">Shipping label printer</string>
+    <string name="nilkamal_invoice_printer">Nilkamal invoice printer</string>
     <string name="amazon_label_printer">Amazon Label Printer</string>
     <string name="so_num">SO Number</string>
     <string name="btnStart">Start</string>

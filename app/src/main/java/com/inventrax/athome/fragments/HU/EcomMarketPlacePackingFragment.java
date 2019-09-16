@@ -1,4 +1,4 @@
-package com.inventrax.athome.fragments.HH.ECOM;
+package com.inventrax.athome.fragments.HU;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -63,7 +63,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EcomBulkPackingFragment extends Fragment implements View.OnClickListener, BarcodeReader.TriggerListener, BarcodeReader.BarcodeListener {
+public class EcomMarketPlacePackingFragment extends Fragment implements View.OnClickListener, BarcodeReader.TriggerListener, BarcodeReader.BarcodeListener {
 
     private static final String classCode = "API_FRAG_ECOM BULK PACKING";
     private View rootView;
@@ -71,15 +71,15 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
     private RelativeLayout rlSelectPrinter, rlBulk;
 
     private CustomEditText etVlpdNo;
-    private SearchableSpinner spinnerRSNPrinter, spinnerFlipkartBulkPrinter, spinnerAmazonPinter, spinnerSONumber;
+    private SearchableSpinner spinnerRSNPrinter, spinnerShippingLabelPrinter, spinnerNilkamalInvoicePinter;
     private Button btnStart, btnCloseOne, btnBack, btnCloseTwo;
-    private String RSNPrinter = "", flipkartBulkPrinter = "", amazonPrinter = "", SOnumber = "";
-    private CheckBox cbRSNwithMRP, cbRSNwithoutMRP, cbFlipkartLabel, cbAmazonLabel;
+    private String RSNPrinter = "", shippingLabelPrinter = "", nilkamalInvoicePrinter = "";
+    private CheckBox cbRSNwithMRP, cbRSNwithoutMRP, cbShippingLabel, cbNilkamalInvoice;
     private CardView cvScanRSN;
     private ImageView ivScanRSN;
     private TextView tvScannedRSN, tvStatusOne, tvStatusTwo, tvStatusThree, tvStatusFour;
 
-    private boolean isRSNwithMRP = false, isRSNwithoutMRP = false, isFlipkartLabel = false, isAmazonLabel = false;
+    private boolean isRSNwithMRP = false, isRSNwithoutMRP = false, isShippingLabel = false, isNilkamalInvoice = false;
 
     private Common common = null;
     String scanner = null;
@@ -111,7 +111,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
         }
     };
 
-    public EcomBulkPackingFragment() {
+    public EcomMarketPlacePackingFragment() {
 
     }
 
@@ -120,7 +120,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.ecom_bulkpacking_fragment, container, false);
+        rootView = inflater.inflate(R.layout.ecom_marketpalce_fragment, container, false);
         barcodeReader = MainActivity.getBarcodeObject();
         loadFormControls();
         return rootView;
@@ -143,9 +143,8 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
         printer = new ArrayList();
 
         spinnerRSNPrinter = (SearchableSpinner) rootView.findViewById(R.id.spinnerRSNPrinter);
-        spinnerFlipkartBulkPrinter = (SearchableSpinner) rootView.findViewById(R.id.spinnerFlipkartBulkPrinter);
-        spinnerAmazonPinter = (SearchableSpinner) rootView.findViewById(R.id.spinnerAmazonPinter);
-        spinnerSONumber = (SearchableSpinner) rootView.findViewById(R.id.spinnerSONumber);
+        spinnerShippingLabelPrinter = (SearchableSpinner) rootView.findViewById(R.id.spinnerShippingLabelPrinter);
+        spinnerNilkamalInvoicePinter = (SearchableSpinner) rootView.findViewById(R.id.spinnerNilkamalInvoicePinter);
 
         spinnerRSNPrinter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -162,12 +161,12 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
             }
         });
 
-        spinnerFlipkartBulkPrinter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerShippingLabelPrinter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (!spinnerFlipkartBulkPrinter.getSelectedItem().toString().equalsIgnoreCase("Select")) {
-                    flipkartBulkPrinter = spinnerFlipkartBulkPrinter.getSelectedItem().toString();
+                if (!spinnerShippingLabelPrinter.getSelectedItem().toString().equalsIgnoreCase("Select")) {
+                    shippingLabelPrinter = spinnerShippingLabelPrinter.getSelectedItem().toString();
                 }
 
             }
@@ -177,12 +176,12 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
             }
         });
-        spinnerAmazonPinter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerNilkamalInvoicePinter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (!spinnerAmazonPinter.getSelectedItem().toString().equalsIgnoreCase("Select")) {
-                    amazonPrinter = spinnerAmazonPinter.getSelectedItem().toString();
+                if (!spinnerNilkamalInvoicePinter.getSelectedItem().toString().equalsIgnoreCase("Select")) {
+                    nilkamalInvoicePrinter = spinnerNilkamalInvoicePinter.getSelectedItem().toString();
                 }
 
             }
@@ -192,20 +191,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
             }
         });
-        spinnerSONumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!spinnerSONumber.getSelectedItem().toString().equalsIgnoreCase("Select")) {
-                    SOnumber = spinnerSONumber.getSelectedItem().toString();
-                }
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         btnStart = (Button) rootView.findViewById(R.id.btnStart);
         btnCloseOne = (Button) rootView.findViewById(R.id.btnCloseOne);
@@ -214,8 +200,8 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
         cbRSNwithMRP = (CheckBox) rootView.findViewById(R.id.cbRSNwithMRP);
         cbRSNwithoutMRP = (CheckBox) rootView.findViewById(R.id.cbRSNwithoutMRP);
-        cbFlipkartLabel = (CheckBox) rootView.findViewById(R.id.cbFlipkartLabel);
-        cbAmazonLabel = (CheckBox) rootView.findViewById(R.id.cbAmazonLabel);
+        cbShippingLabel = (CheckBox) rootView.findViewById(R.id.cbShippingLabel);
+        cbNilkamalInvoice = (CheckBox) rootView.findViewById(R.id.cbNilkamalInvoice);
 
         cvScanRSN = (CardView) rootView.findViewById(R.id.cvScanRSN);
         ivScanRSN = (ImageView) rootView.findViewById(R.id.ivScanRSN);
@@ -263,16 +249,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
         });
 
 
-        etVlpdNo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (!hasFocus) {
-                    getSOnum();
 
-                }
-
-            }
-        });
 
         cbRSNwithMRP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -296,29 +273,31 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
             }
         });
 
-        cbFlipkartLabel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbShippingLabel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    isFlipkartLabel = true;
+                    isShippingLabel = true;
                 } else {
-                    isFlipkartLabel = false;
+                    isShippingLabel = false;
                 }
             }
         });
 
-        cbAmazonLabel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbNilkamalInvoice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    isAmazonLabel = true;
+                    isNilkamalInvoice = true;
                 } else {
-                    isAmazonLabel = false;
+                    isNilkamalInvoice = false;
                 }
             }
         });
 
         getRSNPrinter();
+
+        getMarketSalePrinters();
     }
 
 
@@ -338,29 +317,23 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
                 if (!RSNPrinter.equals("Select") && !RSNPrinter.equals("")) {
 
-                    if (!flipkartBulkPrinter.equals("Select") && !flipkartBulkPrinter.equals("")) {
+                    if (!shippingLabelPrinter.equals("Select") && !shippingLabelPrinter.equals("")) {
 
-                        if (!amazonPrinter.equals("Select") && !amazonPrinter.equals("")) {
+                        if (!nilkamalInvoicePrinter.equals("Select") && !nilkamalInvoicePrinter.equals("")) {
 
                             if (!etVlpdNo.getText().toString().isEmpty()) {
 
-                                if (!SOnumber.equals("Select") && !SOnumber.equals("")) {
-
                                     rlSelectPrinter.setVisibility(View.GONE);
                                     rlBulk.setVisibility(View.VISIBLE);
-
-                                } else {
-                                    common.showUserDefinedAlertType("Please select SO number", getActivity(), getContext(), "Error");
-                                }
 
                             } else {
                                 common.showUserDefinedAlertType("Please enter VLPD number", getActivity(), getContext(), "Error");
                             }
                         } else {
-                            common.showUserDefinedAlertType("Please select Amazon printer", getActivity(), getContext(), "Error");
+                            common.showUserDefinedAlertType("Please select Nilkamal invoice printer", getActivity(), getContext(), "Error");
                         }
                     } else {
-                        common.showUserDefinedAlertType("Please select Flipkart printer", getActivity(), getContext(), "Error");
+                        common.showUserDefinedAlertType("Please select Shipping label printer", getActivity(), getContext(), "Error");
                     }
 
 
@@ -389,7 +362,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
         if (scannedData != null && !common.isPopupActive()) {
 
-            if (isRSNwithMRP || isRSNwithoutMRP || isFlipkartLabel || isAmazonLabel) {
+            if (isRSNwithMRP || isRSNwithoutMRP || isShippingLabel || isNilkamalInvoice) {
 
                 if (ScanValidator.IsRSNScanned(scannedData.trim())) {
 
@@ -433,7 +406,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
             } catch (Exception ex) {
                 try {
-                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                     logException();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -470,15 +443,14 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
                                 ArrayAdapter arrayAdapterPrinter = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, printer);
                                 spinnerRSNPrinter.setAdapter(arrayAdapterPrinter);
-                                spinnerFlipkartBulkPrinter.setAdapter(arrayAdapterPrinter);
-                                spinnerAmazonPinter.setAdapter(arrayAdapterPrinter);
+
 
 
                                 ProgressDialogUtils.closeProgressDialog();
                             }
                         } catch (Exception ex) {
                             try {
-                                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                                 logException();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -497,7 +469,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                 });
             } catch (Exception ex) {
                 try {
-                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                     logException();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -507,7 +479,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
             }
         } catch (Exception ex) {
             try {
-                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                 logException();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -519,14 +491,13 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
     }
 
-
-    private void getSOnum() {
+    private void getMarketSalePrinters() {
         try {
             WMSCoreMessage message = new WMSCoreMessage();
             message = common.SetAuthentication(EndpointConstants.EcomPackingDTO, getContext());
             EcomPackingDTO ecomPackingDTO = new EcomPackingDTO();
             ecomPackingDTO.setUserID(userId);
-            ecomPackingDTO.setVlpdNumber(etVlpdNo.getText().toString());
+            ecomPackingDTO.setResourceType("A4 Printer");
 
             message.setEntityObject(ecomPackingDTO);
 
@@ -535,12 +506,12 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                     RestService.getClient().create(ApiInterface.class);
 
             try {
-                call = apiService.GetSONumbersByVLPD(message);
+                call = apiService.GetClientResources(message);
                 ProgressDialogUtils.showProgressDialog("Please Wait");
 
             } catch (Exception ex) {
                 try {
-                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                     logException();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -562,24 +533,29 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
                                 WMSExceptionMessage owmsExceptionMessage = null;
                                 for (int i = 0; i < _lExceptions.size(); i++) {
+
                                     owmsExceptionMessage = new WMSExceptionMessage(_lExceptions.get(i).entrySet());
+                                    ProgressDialogUtils.closeProgressDialog();
+                                    common.showAlertType(owmsExceptionMessage, getActivity(), getContext());
+                                    return;
+
                                 }
-                                ProgressDialogUtils.closeProgressDialog();
-                                common.showAlertType(owmsExceptionMessage, getActivity(), getContext());
                             } else {
 
                                 core = gson.fromJson(response.body().toString(), WMSCoreMessage.class);
 
-                                List soNum = new ArrayList();
-                                soNum = (List) core.getEntityObject();
+                                printer = (List) core.getEntityObject();
 
-                                ArrayAdapter arrayAdapterStoreRefNo = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, soNum);
-                                spinnerSONumber.setAdapter(arrayAdapterStoreRefNo);
+                                ArrayAdapter arrayAdapterPrinter = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, printer);
+                                spinnerShippingLabelPrinter.setAdapter(arrayAdapterPrinter);
+                                spinnerNilkamalInvoicePinter.setAdapter(arrayAdapterPrinter);
+
+
                                 ProgressDialogUtils.closeProgressDialog();
                             }
                         } catch (Exception ex) {
                             try {
-                                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                                 logException();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -598,7 +574,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                 });
             } catch (Exception ex) {
                 try {
-                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                     logException();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -608,7 +584,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
             }
         } catch (Exception ex) {
             try {
-                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetClientResources", getActivity());
                 logException();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -628,14 +604,13 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
             EcomPackingDTO ecomPackingDTO = new EcomPackingDTO();
             ecomPackingDTO.setUserID(userId);
             ecomPackingDTO.setRSNPrinter(RSNPrinter);
-            ecomPackingDTO.setFlipcartBulkOrderPrinter(flipkartBulkPrinter);
-            ecomPackingDTO.setAmazonBulkOrderPrinter(amazonPrinter);
+            ecomPackingDTO.setMarketPlaceInvoicePrinter(shippingLabelPrinter);
+            ecomPackingDTO.setNIlkamalInvoicePrinter(nilkamalInvoicePrinter);
             ecomPackingDTO.setVlpdNumber(etVlpdNo.getText().toString());
-            ecomPackingDTO.setSoNumber(SOnumber);
-            ecomPackingDTO.setISPrintAmazonAsinStickerRequired(isAmazonLabel);
+            ecomPackingDTO.setISPrintMarketPlaceShippingLableRequired(isShippingLabel);
             ecomPackingDTO.setISPrintRSNWithoutMRPRequired(isRSNwithoutMRP);
             ecomPackingDTO.setPrintRSNWithMRPRequired(isRSNwithMRP);
-            ecomPackingDTO.setISPrintBulkOrderShippingLableRequired(isFlipkartLabel);
+            ecomPackingDTO.setISPrintNilkamalInvoiceRequired(isNilkamalInvoice);
             ecomPackingDTO.setBarcode(barcode);
 
             message.setEntityObject(ecomPackingDTO);
@@ -650,7 +625,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
             } catch (Exception ex) {
                 try {
-                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "PrintEcomLabelsForFurniture", getActivity());
                     logException();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -708,7 +683,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                                 for (PrintResponce responce : list) {
                                     if (responce.getStatus()) {
 
-                                        if (responce.getRequestType().equalsIgnoreCase("RSNWithMRP")) {
+                                       /* if (responce.getRequestType().equalsIgnoreCase("RSNWithMRP")) {
                                             tvStatusOne.setText(responce.getMessage());
                                         } else if (responce.getRequestType().equalsIgnoreCase("RSNWithoutMRP")) {
                                             tvStatusTwo.setText(responce.getMessage());
@@ -716,7 +691,10 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                                             tvStatusThree.setText(responce.getMessage());
                                         } else if (responce.getRequestType().equals("AmazonASIN")) {
                                             tvStatusFour.setText(responce.getMessage());
-                                        }
+                                        }*/
+                                    }else {
+                                        common.showUserDefinedAlertType(responce.getMessage(), getActivity(), getContext(), "Error");
+                                        return;
                                     }
                                 }
 
@@ -724,7 +702,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                             }
                         } catch (Exception ex) {
                             try {
-                                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "PrintEcomLabelsForFurniture", getActivity());
                                 logException();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -743,7 +721,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                 });
             } catch (Exception ex) {
                 try {
-                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                    exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "PrintEcomLabelsForFurniture", getActivity());
                     logException();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -753,7 +731,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
             }
         } catch (Exception ex) {
             try {
-                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "GetOpenOBDListForECOMPacking", getActivity());
+                exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "PrintEcomLabelsForFurniture", getActivity());
                 logException();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -935,7 +913,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                 // Toast.makeText(this, "Scanner unavailable", Toast.LENGTH_SHORT).show();
             }
         }
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.title_activity_ecom_bulk_packing));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.title_activity_ecom_MarketPlace));
     }
 
     //Barcode scanner API

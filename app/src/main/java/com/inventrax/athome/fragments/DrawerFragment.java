@@ -22,8 +22,7 @@ import com.inventrax.athome.R;
 import com.inventrax.athome.adapters.ExpandableListAdapter;
 import com.inventrax.athome.fragments.HH.BoxLoadingFragmentHH;
 import com.inventrax.athome.fragments.HH.CycleCountFragmentHH;
-
-import com.inventrax.athome.fragments.HH.ECOM.EcomBulkPackingFragment;
+import com.inventrax.athome.fragments.HU.EcomBulkPackingFragment;
 import com.inventrax.athome.fragments.HH.ECOM.EcomPackingFragment;
 import com.inventrax.athome.fragments.HH.ECOM.EcomPickFragment;
 import com.inventrax.athome.fragments.HH.ECOM.EcomPickOnDemandFragment;
@@ -36,6 +35,7 @@ import com.inventrax.athome.fragments.HH.SkuToSkuFragmentHH;
 import com.inventrax.athome.fragments.HH.SorterPickFragmentHH;
 import com.inventrax.athome.fragments.HU.CaseNoMapping;
 import com.inventrax.athome.fragments.HU.CycleCountFragmentHU;
+import com.inventrax.athome.fragments.HU.EcomMarketPlacePackingFragment;
 import com.inventrax.athome.fragments.HU.MapPalletDockLoc;
 import com.inventrax.athome.fragments.HU.MattressesPrintFragmentHU;
 import com.inventrax.athome.fragments.HU.PickFragmentHU;
@@ -209,6 +209,22 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
             childList.put(menuModel, childModelsList);
         }
 
+
+        menuModel = new MenuModel("ECOM Packing", true, true, "ECOM");
+        headerList.add(menuModel);
+
+        childModelsList = new ArrayList<>();
+
+        childModel = new MenuModel("ECOM Bulk Order Packing", false, false, "ECOM Bulk Order Packing");
+        childModelsList.add(childModel);
+
+        childModel = new MenuModel("ECOM Market Place", false, false, "ECOM Market Place");
+        childModelsList.add(childModel);
+
+        if (menuModel.hasChildren) {
+            childList.put(menuModel, childModelsList);
+        }
+
         childModelsList = new ArrayList<>();
         menuModel = new MenuModel("Transfers", true, true, "Transfers");
         headerList.add(menuModel);
@@ -271,8 +287,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
         childModel = new MenuModel("ECOM Pick on Demand", false, false, "ECOM Pick on Demand");
         childModelsList.add(childModel);
 
-        childModel = new MenuModel("ECOM Bulk Order Packing", false, false, "ECOM Bulk Order Packing");
-        childModelsList.add(childModel);
+
 
       /*  childModel = new MenuModel("ECOM Packing", false, false,"ECOM Packing");
         childModelsList.add(childModel);*/
@@ -445,6 +460,16 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 case "Mattress Bundle":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new MattressesPrintFragmentHU());
                     break;
+
+                case "ECOM Bulk Order Packing":
+                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new EcomBulkPackingFragment());
+                    break;
+
+                case "ECOM Market Place":
+                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new EcomMarketPlacePackingFragment());
+                    break;
+
+
             }
         } else {
             switch (menuLink) {                                   // HH menu item navigation clicks
@@ -472,9 +497,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
                 case "ECOM Packing":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new EcomPackingFragment());
-                    break;
-                case "ECOM Bulk Order Packing":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new EcomBulkPackingFragment());
                     break;
 
                 case "Sorter Pick":
