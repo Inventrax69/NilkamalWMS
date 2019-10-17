@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -263,14 +265,29 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
         });
 
 
+/*
         etVlpdNo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
                     getSOnum();
-
                 }
+            }
+        });
+*/
 
+        etVlpdNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if(s.length()==11) getSOnum();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 
@@ -572,7 +589,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
                                 List soNum = new ArrayList();
                                 soNum = (List) core.getEntityObject();
-
+                                spinnerSONumber.setAdapter(null);
                                 ArrayAdapter arrayAdapterStoreRefNo = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, soNum);
                                 spinnerSONumber.setAdapter(arrayAdapterStoreRefNo);
                                 ProgressDialogUtils.closeProgressDialog();
@@ -706,7 +723,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                                 tvStatusOne.setText("");
 
                                 for (PrintResponce responce : list) {
-                                    if (responce.getStatus()) {
+                                   /* if (responce.getStatus()) {*/
 
                                         if (responce.getRequestType().equalsIgnoreCase("RSNWithMRP")) {
                                             tvStatusOne.setText(responce.getMessage());
@@ -717,7 +734,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                                         } else if (responce.getRequestType().equals("AmazonASIN")) {
                                             tvStatusFour.setText(responce.getMessage());
                                         }
-                                    }
+                                    /*}*/
                                 }
 
                                 ProgressDialogUtils.closeProgressDialog();

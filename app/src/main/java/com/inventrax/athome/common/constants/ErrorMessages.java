@@ -148,4 +148,7 @@ public class ErrorMessages {
     public String EMC_081 = "Other request is in progress .";
     public String EMC_082 = "Cannot Exceed Master barcode Qty.";
 
+    public String EMC_083 = "Please Select Ref No.";
+
+
 }

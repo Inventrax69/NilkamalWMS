@@ -108,8 +108,20 @@ public class InboundDTO {
     private String receivedQty;
     @SerializedName("ItemSerialNo")
     private String itemSerialNo;
+
+    @SerializedName("Message")
+    private String Message;
+
+
+
+    @SerializedName("Status")
+    private Boolean Status;
+
+
+
     public  InboundDTO()
     {
+
     }
 
 
@@ -122,6 +134,16 @@ public class InboundDTO {
                 case "InboundID":
                     if(entry.getValue()!=null) {
                         this.setInboundID(entry.getValue().toString());
+                    }
+                    break;
+                case "Message":
+                    if(entry.getValue()!=null) {
+                        this.setMessage(entry.getValue().toString());
+                    }
+                    break;
+                case "Status":
+                    if(entry.getValue()!=null) {
+                        this.setStatus(Boolean.parseBoolean(entry.getValue().toString()));
                     }
                     break;
                 case "StoreRefNo":
@@ -735,5 +757,21 @@ public class InboundDTO {
 
     public void setPalletInfoDTO(List<PalletInfoDTO> palletInfoDTO) {
         this.palletInfoDTO = palletInfoDTO;
+    }
+
+    public String getMessage() {
+        return Message;
+    }
+
+    public void setMessage(String message) {
+        Message = message;
+    }
+
+    public Boolean getStatus() {
+        return Status;
+    }
+
+    public void setStatus(Boolean status) {
+        Status = status;
     }
 }

@@ -132,6 +132,7 @@
     <string name="title_activity_rsn_tracking">RSN Tracking</string>
     <string name="title_activity_box_loading_hh">Box Loading</string>
     <string name="title_activity_vlpd_loading">VLPD Loading</string>
+    <string name="title_activity_ecom_loading">ECOM Loading</string>
     <string name="title_activity_vlpd_list">VLPD List</string>
     <string name="title_activity_map_pallet_dock">Map Pallet Dock Loc.</string>
     <string name="title_activity_palletputaway">Pallet Putaway</string>

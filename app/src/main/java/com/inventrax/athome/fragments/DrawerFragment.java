@@ -22,6 +22,7 @@ import com.inventrax.athome.R;
 import com.inventrax.athome.adapters.ExpandableListAdapter;
 import com.inventrax.athome.fragments.HH.BoxLoadingFragmentHH;
 import com.inventrax.athome.fragments.HH.CycleCountFragmentHH;
+import com.inventrax.athome.fragments.HU.ECOMLoadingFragment;
 import com.inventrax.athome.fragments.HU.EcomBulkPackingFragment;
 import com.inventrax.athome.fragments.HH.ECOM.EcomPackingFragment;
 import com.inventrax.athome.fragments.HH.ECOM.EcomPickFragment;
@@ -215,10 +216,13 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
         childModelsList = new ArrayList<>();
 
-        childModel = new MenuModel("ECOM Bulk Order Packing", false, false, "ECOM Bulk Order Packing");
+        childModel = new MenuModel("Bulk Order Packing", false, false, "Bulk Order Packing");
         childModelsList.add(childModel);
 
-        childModel = new MenuModel("ECOM Market Place", false, false, "ECOM Market Place");
+        childModel = new MenuModel("Market Place", false, false, "Market Place");
+        childModelsList.add(childModel);
+
+        childModel = new MenuModel("ECOM Loading", false, false, "ECOM Loading");
         childModelsList.add(childModel);
 
         if (menuModel.hasChildren) {
@@ -451,22 +455,29 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 case "Loc to Loc":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new SLocToSLocFragment());
                     break;
+
                 case "Cycle Count":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new CycleCountFragmentHU());
                     break;
+
                 case "Case No. Mapping":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new CaseNoMapping());
                     break;
+
                 case "Mattress Bundle":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new MattressesPrintFragmentHU());
                     break;
 
-                case "ECOM Bulk Order Packing":
+                case "Bulk Order Packing":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new EcomBulkPackingFragment());
                     break;
 
-                case "ECOM Market Place":
+                case "Market Place":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new EcomMarketPlacePackingFragment());
+                    break;
+
+                case "ECOM Loading":
+                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new ECOMLoadingFragment());
                     break;
 
 
@@ -486,7 +497,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new RsnTrackFragment());
                     break;
 
-
                 case "ECOM Pick":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new EcomPickFragment());
                     break;
@@ -501,7 +511,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
                 case "Sorter Pick":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new SorterPickFragmentHH());
-
                     break;
 
                 case "OBD Pick":
@@ -535,9 +544,12 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 case "Bin Replenishment":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new HHBinReplnishment());
                     break;
+
                 case "Cycle Count":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new CycleCountFragmentHH());
                     break;
+
+
             }
         }
 

@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -249,8 +250,6 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
         });
 
 
-
-
         cbRSNwithMRP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -323,8 +322,8 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
 
                             if (!etVlpdNo.getText().toString().isEmpty()) {
 
-                                    rlSelectPrinter.setVisibility(View.GONE);
-                                    rlBulk.setVisibility(View.VISIBLE);
+                                rlSelectPrinter.setVisibility(View.GONE);
+                                rlBulk.setVisibility(View.VISIBLE);
 
                             } else {
                                 common.showUserDefinedAlertType("Please enter VLPD number", getActivity(), getContext(), "Error");
@@ -372,7 +371,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
                     cvScanRSN.setCardBackgroundColor(getResources().getColor(R.color.white));
                     ivScanRSN.setImageResource(R.drawable.check);
 
-                    printECOMFurnitureLabel(scannedBarcode);
+                    printECOMLabel(scannedBarcode);
 
                 } else {
                     common.showUserDefinedAlertType(errorMessages.EMC_0009, getActivity(), getContext(), "Error");
@@ -443,7 +442,6 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
 
                                 ArrayAdapter arrayAdapterPrinter = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, printer);
                                 spinnerRSNPrinter.setAdapter(arrayAdapterPrinter);
-
 
 
                                 ProgressDialogUtils.closeProgressDialog();
@@ -597,7 +595,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
     }
 
 
-    private void printECOMFurnitureLabel(String barcode) {
+    private void printECOMLabel(String barcode) {
         try {
             WMSCoreMessage message = new WMSCoreMessage();
             message = common.SetAuthentication(EndpointConstants.EcomPackingDTO, getContext());
@@ -666,7 +664,6 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
                                 for (int i = 0; i < _lI.size(); i++) {
                                     PrintResponce oInboundDTO = new PrintResponce(_lI.get(i).entrySet());
                                     printResponces.add(oInboundDTO);
-
                                 }
 
                                 List<PrintResponce> list = new ArrayList<>();
@@ -675,15 +672,19 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
                                     list.add((PrintResponce) obj);
                                 }
 
+
+
                                 tvStatusFour.setText("");
                                 tvStatusThree.setText("");
                                 tvStatusTwo.setText("");
                                 tvStatusOne.setText("");
 
-                                for (PrintResponce responce : list) {
-                                    if (responce.getStatus()) {
+                                ProgressDialogUtils.closeProgressDialog();
 
-                                       /* if (responce.getRequestType().equalsIgnoreCase("RSNWithMRP")) {
+
+                                for (PrintResponce responce : list) {
+
+/*                                        if (responce.getRequestType().equalsIgnoreCase("RSNWithMRP")) {
                                             tvStatusOne.setText(responce.getMessage());
                                         } else if (responce.getRequestType().equalsIgnoreCase("RSNWithoutMRP")) {
                                             tvStatusTwo.setText(responce.getMessage());
@@ -692,10 +693,18 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
                                         } else if (responce.getRequestType().equals("AmazonASIN")) {
                                             tvStatusFour.setText(responce.getMessage());
                                         }*/
-                                    }else {
-                                        common.showUserDefinedAlertType(responce.getMessage(), getActivity(), getContext(), "Error");
-                                        return;
+                                    if (responce.getRequestType().equalsIgnoreCase("RSNWithMRP")) {
+                                        tvStatusOne.setText(responce.getMessage());
+                                    } else if (responce.getRequestType().equalsIgnoreCase("RSNWithoutMRP")) {
+                                        tvStatusTwo.setText(responce.getMessage());
+                                    } else if (responce.getRequestType().equalsIgnoreCase("EcomLable")) {
+                                        tvStatusThree.setText(responce.getMessage());
+                                    } else if (responce.getRequestType().equals("SAPInvoice")) {
+                                        tvStatusFour.setText(responce.getMessage());
                                     }
+
+
+
                                 }
 
                                 ProgressDialogUtils.closeProgressDialog();

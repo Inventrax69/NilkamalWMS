@@ -124,6 +124,11 @@ public interface ApiInterface {
     @POST("VLPD/GetOpenRefNumberList")
     Call<String> GetOpenRefNumberList(@Body WMSCoreMessage oRequest);
 
+    @POST("ECOM/GetFurnitureLoadReferenceNumbers")
+    Call<String> GetFurnitureLoadReferenceNumbers(@Body WMSCoreMessage oRequest);
+
+    @POST("ECOM/ConfirmFurnitureEcomLoading")
+    Call<String> ConfirmFurnitureEcomLoading(@Body WMSCoreMessage oRequest);
 
     @POST("VLPD/GetItemtoPick")
     Call<String> GetItemtoPick(@Body WMSCoreMessage oRequest);

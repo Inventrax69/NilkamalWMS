@@ -2,6 +2,9 @@ package com.inventrax.athome.pojos;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+import java.util.Set;
+
 public class EcomPackingDTO {
 
     @SerializedName("UserID")
@@ -42,6 +45,134 @@ public class EcomPackingDTO {
     private String LoadRef;
     @SerializedName("ResourceType")
     private String ResourceType;
+
+    @SerializedName("Message")
+    private String Message;
+
+
+
+
+    @SerializedName("Status")
+    private Boolean Status;
+
+
+    public  EcomPackingDTO(){
+
+    }
+
+    public EcomPackingDTO(Set<? extends Map.Entry<?, ?>> entries)
+    {
+        for(Map.Entry<?, ?> entry : entries) {
+
+            switch (entry.getKey().toString()) {
+
+                case "UserID":
+                    if(entry.getValue()!=null) {
+                        this.setUserID(entry.getValue().toString());
+                    }
+                    break;
+                case "VlpdID":
+                    if(entry.getValue()!=null) {
+                        this.setVlpdID(entry.getValue().toString());
+                    }
+                    break;
+                case "Barcode":
+                    if(entry.getValue()!=null) {
+                        this.setBarcode(entry.getValue().toString());
+                    }
+                    break;
+                case "BarcodeType":
+                    if(entry.getValue()!=null) {
+                        this.setBarcodeType(entry.getValue().toString());
+                    }
+                    break;
+                case "RSNPrinter":
+                    if(entry.getValue()!=null) {
+                        this.setRSNPrinter(entry.getValue().toString());
+                    }
+                    break;
+                case "NIlkamalInvoicePrinter":
+                    if(entry.getValue()!=null) {
+                        this.setNIlkamalInvoicePrinter(entry.getValue().toString());
+                    }
+                    break;
+                case "MarketPlaceInvoicePrinter":
+                    if(entry.getValue()!=null) {
+                        this.setMarketPlaceInvoicePrinter(entry.getValue().toString());
+                    }
+                    break;
+                case "FlipcartBulkOrderPrinter":
+                    if(entry.getValue()!=null) {
+                        this.setFlipcartBulkOrderPrinter(entry.getValue().toString());
+                    }
+
+                case "AmazonBulkOrderPrinter":
+                    if(entry.getValue()!=null) {
+                        this.setAmazonBulkOrderPrinter(entry.getValue().toString());
+                    }
+                case "IsPrintRSNWithMRPRequired":
+                    if(entry.getValue()!=null) {
+                        this.setISPrintRSNWithoutMRPRequired(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                case "ISPrintRSNWithoutMRPRequired":
+                    if(entry.getValue()!=null) {
+                        this.setISPrintRSNWithoutMRPRequired(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                    break;
+                case "ISPrintMarketPlaceShippingLableRequired":
+                    if(entry.getValue()!=null) {
+                        this.setISPrintMarketPlaceShippingLableRequired(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                    break;
+                case "ISPrintNilkamalInvoiceRequired":
+                    if(entry.getValue()!=null) {
+                        this.setISPrintNilkamalInvoiceRequired(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                    break;
+                case "ISPrintBulkOrderShippingLableRequired":
+                    if(entry.getValue()!=null) {
+                        this.setISPrintBulkOrderShippingLableRequired(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                    break;
+                case "ISPrintAmazonAsinStickerRequired":
+                    if(entry.getValue()!=null) {
+                        this.setISPrintAmazonAsinStickerRequired(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                    break;
+                case "VlpdNumber":
+                    if(entry.getValue()!=null) {
+                        this.setVlpdNumber(entry.getValue().toString());
+                    }
+                    break;
+                case "SoNumber":
+                    if(entry.getValue()!=null) {
+                        this.setSoNumber(entry.getValue().toString());
+                    }
+                    break;
+                case "LoadRef":
+                    if(entry.getValue()!=null) {
+                        this.setLoadRef(entry.getValue().toString());
+                    }
+                    break;
+                case "ResourceType":
+                    if(entry.getValue()!=null) {
+                        this.setResourceType(entry.getValue().toString());
+                    }
+                    break;
+                case "Message":
+                    if(entry.getValue()!=null) {
+                        this.setMessage(entry.getValue().toString());
+                    }
+                    break;
+                case "Status":
+                    if(entry.getValue()!=null) {
+                        this.setStatus(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                    break;
+
+            }
+        }
+    }
 
 
     public String getUserID() {
@@ -194,6 +325,23 @@ public class EcomPackingDTO {
 
     public void setResourceType(String resourceType) {
         ResourceType = resourceType;
+    }
+
+
+    public String getMessage() {
+        return Message;
+    }
+
+    public void setMessage(String message) {
+        Message = message;
+    }
+
+    public void setStatus(Boolean status) {
+        Status = status;
+    }
+
+    public Boolean getStatus() {
+        return Status;
     }
 }
 
