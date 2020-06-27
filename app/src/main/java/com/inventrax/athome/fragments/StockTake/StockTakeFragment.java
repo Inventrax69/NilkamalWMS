@@ -355,9 +355,11 @@ public class StockTakeFragment extends Fragment implements View.OnClickListener,
                                     masterbarcodeQty = Integer.parseInt(scannedData.split("[,]")[1].trim());
 
                                     GetHHDetails(true);
+
                                 } else {
                                     //if qty equals  1 enable  disable update button and Qty field and auto call UpsertEANDetails();
                                     GetHHDetails(false);
+
                                 }
                             } catch (Exception ex)
                             {
@@ -376,10 +378,13 @@ public class StockTakeFragment extends Fragment implements View.OnClickListener,
                         {
                         common.showUserDefinedAlertType(errorMessages.EMC_0015, getActivity(), getContext(), "Warning");
                     }
-                } else if (scanValidator.IsLocationScanned(scannedData))
+                }
+                else if (scanValidator.IsLocationScanned(scannedData))
                 {
                     etLocation.setText(scannedData);
                     GetLocationStatusForHH();
+
+                }else if(scanValidator.IsPalletScanned(scannedData) && isValidLocation ){
 
                 }
             }

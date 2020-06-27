@@ -988,6 +988,7 @@ public class PickOnDemandFragmentHU extends Fragment implements View.OnClickList
 
                 lblDock.setText(suggestedItem.getDock());
                 lblRefNo.setText(suggestedItem.getRefDoc());
+                lblCaseNo.setText(suggestedItem.getItem_SerialNumber());
 
             } else {
                 if (!lblSKU.getText().toString().isEmpty()) {

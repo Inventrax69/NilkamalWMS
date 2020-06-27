@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Nilkamal.iml" filepath="$PROJECT_DIR$/Nilkamal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NilkamalWMS.iml" filepath="$PROJECT_DIR$/NilkamalWMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/NilkamalWMS-app.iml" filepath="$PROJECT_DIR$/app/NilkamalWMS-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
