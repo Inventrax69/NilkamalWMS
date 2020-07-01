@@ -11,8 +11,8 @@ android {
         applicationId "com.inventrax.athome"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 18
-        versionName "2.9"
+        versionCode 19
+        versionName "3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
