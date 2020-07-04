@@ -37,6 +37,8 @@ public class EcomPackingDTO {
     private Boolean ISPrintBulkOrderShippingLableRequired;
     @SerializedName("ISPrintAmazonAsinStickerRequired")
     private Boolean ISPrintAmazonAsinStickerRequired;
+    @SerializedName("IsPrintPepperFryInvoiceRequired")
+    private Boolean IsPrintPepperFryInvoiceRequired;
     @SerializedName("VlpdNumber")
     private String VlpdNumber;
     @SerializedName("SoNumber")
@@ -137,6 +139,11 @@ public class EcomPackingDTO {
                 case "ISPrintAmazonAsinStickerRequired":
                     if(entry.getValue()!=null) {
                         this.setISPrintAmazonAsinStickerRequired(Boolean.parseBoolean(entry.getValue().toString()));
+                    }
+                    break;
+                 case "IsPrintPepperFryInvoiceRequired":
+                    if(entry.getValue()!=null) {
+                        this.setPrintPepperFryInvoiceRequired(Boolean.parseBoolean(entry.getValue().toString()));
                     }
                     break;
                 case "VlpdNumber":
@@ -342,6 +349,14 @@ public class EcomPackingDTO {
 
     public Boolean getStatus() {
         return Status;
+    }
+
+    public Boolean getPrintPepperFryInvoiceRequired() {
+        return IsPrintPepperFryInvoiceRequired;
+    }
+
+    public void setPrintPepperFryInvoiceRequired(Boolean printPepperFryInvoiceRequired) {
+        IsPrintPepperFryInvoiceRequired = printPepperFryInvoiceRequired;
     }
 }
 

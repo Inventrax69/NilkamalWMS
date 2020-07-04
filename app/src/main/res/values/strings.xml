@@ -307,4 +307,5 @@
     <string name="amazon_label_printer">Amazon Label Printer</string>
     <string name="so_num">SO Number</string>
     <string name="btnStart">Start</string>
+    <string name="group_vlpd_number">Group VLPD Number</string>
 </resources>

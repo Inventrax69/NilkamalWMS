@@ -75,12 +75,12 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
     private SearchableSpinner spinnerRSNPrinter, spinnerShippingLabelPrinter, spinnerNilkamalInvoicePinter;
     private Button btnStart, btnCloseOne, btnBack, btnCloseTwo;
     private String RSNPrinter = "", shippingLabelPrinter = "", nilkamalInvoicePrinter = "";
-    private CheckBox cbRSNwithMRP, cbRSNwithoutMRP, cbShippingLabel, cbNilkamalInvoice;
+    private CheckBox cbRSNwithMRP, cbRSNwithoutMRP, cbShippingLabel, cbNilkamalInvoice,cbPepperFryInvoice;
     private CardView cvScanRSN;
     private ImageView ivScanRSN;
-    private TextView tvScannedRSN, tvStatusOne, tvStatusTwo, tvStatusThree, tvStatusFour;
+    private TextView tvScannedRSN, tvStatusOne, tvStatusTwo, tvStatusThree, tvStatusFour,tvStatusFive;
 
-    private boolean isRSNwithMRP = false, isRSNwithoutMRP = false, isShippingLabel = false, isNilkamalInvoice = false;
+    private boolean isRSNwithMRP = false, isRSNwithoutMRP = false, isShippingLabel = false, isNilkamalInvoice = false,isPepperFryInvoice = false;
 
     private Common common = null;
     String scanner = null;
@@ -125,6 +125,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
         barcodeReader = MainActivity.getBarcodeObject();
         loadFormControls();
         return rootView;
+
     }
 
     // Form controls
@@ -138,6 +139,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
         tvStatusTwo = (TextView) rootView.findViewById(R.id.tvStatusTwo);
         tvStatusThree = (TextView) rootView.findViewById(R.id.tvStatusThree);
         tvStatusFour = (TextView) rootView.findViewById(R.id.tvStatusFour);
+        tvStatusFive = (TextView) rootView.findViewById(R.id.tvStatusFive);
 
         etVlpdNo = (CustomEditText) rootView.findViewById(R.id.etVlpdNo);
 
@@ -203,6 +205,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
         cbRSNwithoutMRP = (CheckBox) rootView.findViewById(R.id.cbRSNwithoutMRP);
         cbShippingLabel = (CheckBox) rootView.findViewById(R.id.cbShippingLabel);
         cbNilkamalInvoice = (CheckBox) rootView.findViewById(R.id.cbNilkamalInvoice);
+        cbPepperFryInvoice = (CheckBox) rootView.findViewById(R.id.cbPepperFryInvoice);
 
         cvScanRSN = (CardView) rootView.findViewById(R.id.cvScanRSN);
         ivScanRSN = (ImageView) rootView.findViewById(R.id.ivScanRSN);
@@ -294,6 +297,17 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
             }
         });
 
+        cbPepperFryInvoice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    isPepperFryInvoice = true;
+                } else {
+                    isPepperFryInvoice = false;
+                }
+            }
+        });
+
         getRSNPrinter();
 
         getMarketSalePrinters();
@@ -361,7 +375,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
 
         if (scannedData != null && !common.isPopupActive()) {
 
-            if (isRSNwithMRP || isRSNwithoutMRP || isShippingLabel || isNilkamalInvoice) {
+            if (isRSNwithMRP || isRSNwithoutMRP || isShippingLabel || isNilkamalInvoice || isPepperFryInvoice) {
 
                 if (ScanValidator.IsRSNScanned(scannedData.trim())) {
 
@@ -609,6 +623,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
             ecomPackingDTO.setISPrintRSNWithoutMRPRequired(isRSNwithoutMRP);
             ecomPackingDTO.setPrintRSNWithMRPRequired(isRSNwithMRP);
             ecomPackingDTO.setISPrintNilkamalInvoiceRequired(isNilkamalInvoice);
+            ecomPackingDTO.setPrintPepperFryInvoiceRequired(isPepperFryInvoice);
             ecomPackingDTO.setBarcode(barcode);
 
             message.setEntityObject(ecomPackingDTO);
@@ -674,6 +689,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
 
 
 
+                                tvStatusFive.setText("");
                                 tvStatusFour.setText("");
                                 tvStatusThree.setText("");
                                 tvStatusTwo.setText("");
@@ -701,9 +717,9 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
                                         tvStatusThree.setText(responce.getMessage());
                                     } else if (responce.getRequestType().equals("SAPInvoice")) {
                                         tvStatusFour.setText(responce.getMessage());
+                                    } else if (responce.getRequestType().equals("PepperFryInvoice")) {
+                                        tvStatusFive.setText(responce.getMessage());
                                     }
-
-
 
                                 }
 
