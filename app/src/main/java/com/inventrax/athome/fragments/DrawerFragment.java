@@ -77,7 +77,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
     private IntentFilter mIntentFilter;
 
-    private String userName;
+    private String userName,UserRole;
     private String division, menuLink;
     SharedPreferences sp;
 
@@ -94,7 +94,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -117,6 +116,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
             sp = getContext().getSharedPreferences("LoginActivity", Context.MODE_PRIVATE);
             userName = sp.getString("UserName", "");   // Getting User name and division from Login
+            UserRole = sp.getString("UserRole", "");   // Getting User name and division from Login
             division = sp.getString("division", "");
 
             mIntentFilter = new IntentFilter();
@@ -193,8 +193,11 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
         childModel = new MenuModel("Pick", false, false, "Pick");
         childModelsList.add(childModel);
 
-        childModel = new MenuModel("Pick on Demand", false, false, "Pick on Demand");
-        childModelsList.add(childModel);
+        if(UserRole.equals("Pick on Demond")){
+            childModel = new MenuModel("Pick on Demand", false, false, "Pick on Demand");
+            childModelsList.add(childModel);
+        }
+
 
         childModel = new MenuModel("Confirm Pallet", false, false, "Confirm Pallet");
         childModelsList.add(childModel);

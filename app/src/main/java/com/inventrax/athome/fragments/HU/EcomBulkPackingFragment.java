@@ -276,7 +276,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
         });
 */
 
-        etVlpdNo.addTextChangedListener(new TextWatcher() {
+/*        etVlpdNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                     if(s.length()==11) getSOnum();
@@ -289,7 +289,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
+        });*/
 
         cbRSNwithMRP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -336,6 +336,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
         });
 
         getRSNPrinter();
+
     }
 
 
@@ -361,6 +362,10 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
 
                             if (!etVlpdNo.getText().toString().isEmpty()) {
 
+                                rlSelectPrinter.setVisibility(View.GONE);
+                                rlBulk.setVisibility(View.VISIBLE);
+
+/*
                                 if (!SOnumber.equals("Select") && !SOnumber.equals("")) {
 
                                     rlSelectPrinter.setVisibility(View.GONE);
@@ -369,6 +374,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                                 } else {
                                     common.showUserDefinedAlertType("Please select SO number", getActivity(), getContext(), "Error");
                                 }
+*/
 
                             } else {
                                 common.showUserDefinedAlertType("Please enter VLPD number", getActivity(), getContext(), "Error");
@@ -537,7 +543,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
     }
 
 
-    private void getSOnum() {
+/*    private void getSOnum() {
         try {
             WMSCoreMessage message = new WMSCoreMessage();
             message = common.SetAuthentication(EndpointConstants.EcomPackingDTO, getContext());
@@ -635,7 +641,7 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
         }
 
 
-    }
+    }*/
 
 
     private void printECOMFurnitureLabel(String barcode) {

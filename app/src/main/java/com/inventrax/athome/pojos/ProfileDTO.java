@@ -68,6 +68,12 @@ public class ProfileDTO {
                     }
                     break;
 
+                case "UserRole":
+                    if(entry.getValue()!=null) {
+                        this.setUserRole(entry.getValue().toString());
+                    }
+                    break;
+
             }
         }
     }

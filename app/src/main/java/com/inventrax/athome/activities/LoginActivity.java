@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
             txtReleaseDate = (TextView) findViewById(R.id.txtDate);
             txtVersion = (TextView) findViewById(R.id.txtVersionName);
             txtVersion.setText("Version:" + " " + AndroidUtils.getVersionName().toString());
-            txtReleaseDate.setText("Release Date:" + " " + "01-07-2020");
+            txtReleaseDate.setText("Release Date:" + " " + "18-08-2020");
 
             spinnerSelectDivision = (SearchableSpinner) findViewById(R.id.spinnerSelectDivision);
             spinnerSelectDivision.setOnItemSelectedListener(this);
@@ -410,19 +410,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
 
                                     ProfileDTO oProfileDto = null;
                                     for (int i = 0; i < _lProfileDto.size(); i++) {
-
                                         oProfileDto = new ProfileDTO(_lProfileDto.get(i).entrySet());
                                     }
 
-
                                     if (oProfileDto.getUserID() != null) {
                                         sharedPreferencesUtils.savePreference("RefUserId", oProfileDto.getUserID());
-
                                     }
                                     if (oProfileDto.getUserName() != null) {
-
                                         sharedPreferencesUtils.savePreference("UserName", oProfileDto.getUserName());
-
+                                    }
+                                    if (oProfileDto.getUserRole() != null) {
+                                        sharedPreferencesUtils.savePreference("UserRole", oProfileDto.getUserRole());
                                     }
 
 

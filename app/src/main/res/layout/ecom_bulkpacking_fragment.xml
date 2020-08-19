@@ -30,8 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@string/rsn_printer"
-                >
+                android:text="@string/rsn_printer">
 
             </TextView>
 
@@ -87,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@string/vlpd_number">
+                android:text="@string/group_vlpd_number">
             </TextView>
 
             <com.inventrax.athome.util.CustomEditText
@@ -103,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:visibility="gone"
                 android:text="@string/so_num"
                 >
 
@@ -112,6 +112,7 @@
                 android:id="@+id/spinnerSONumber"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp">
 
