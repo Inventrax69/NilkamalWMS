@@ -714,7 +714,6 @@ public class EcomBulkPackingFragment extends Fragment implements View.OnClickLis
                                 for (int i = 0; i < _lI.size(); i++) {
                                     PrintResponce oInboundDTO = new PrintResponce(_lI.get(i).entrySet());
                                     printResponces.add(oInboundDTO);
-
                                 }
 
                                 List<PrintResponce> list = new ArrayList<>();

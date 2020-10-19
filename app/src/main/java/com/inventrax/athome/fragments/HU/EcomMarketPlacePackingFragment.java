@@ -311,6 +311,7 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
         getRSNPrinter();
 
         getMarketSalePrinters();
+
     }
 
 
@@ -610,7 +611,9 @@ public class EcomMarketPlacePackingFragment extends Fragment implements View.OnC
 
 
     private void printECOMLabel(String barcode) {
+
         try {
+
             WMSCoreMessage message = new WMSCoreMessage();
             message = common.SetAuthentication(EndpointConstants.EcomPackingDTO, getContext());
             EcomPackingDTO ecomPackingDTO = new EcomPackingDTO();

@@ -89,8 +89,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
     RestService restService;
     private String division = "";
     private ArrayList<String> listDivision;
-
-
     public static final int MULTIPLE_PERMISSIONS = 10;
 
     // if the android mobile version is greater than 6.0 we are giving the following permissions
@@ -104,11 +102,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         requestforpermissions(permissions);
         //versioncontrol();
         loadFormControls();
-
         loginPresenter = new LoginPresenterImpl(this);
+
     }
 
     //Loading all the form controls
@@ -319,8 +318,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
 
 
     //Validating the User credentials and Calling the API method
-    //Validating the User credentials and Calling the API method
     public void validateUserSession() {
+
         if (NetworkUtils.isInternetAvailable(this)) {
         } else {
             DialogUtils.showAlertDialog(this, "Please enable internet");
@@ -392,15 +391,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
                             if ((core.getType().toString().equals("Exception"))) {
                                 List<LinkedTreeMap<?, ?>> _lExceptions = new ArrayList<LinkedTreeMap<?, ?>>();
                                 _lExceptions = (List<LinkedTreeMap<?, ?>>) core.getEntityObject();
-
                                 WMSExceptionMessage owmsExceptionMessage = null;
                                 for (int i = 0; i < _lExceptions.size(); i++) {
-
                                     owmsExceptionMessage = new WMSExceptionMessage(_lExceptions.get(i).entrySet());
                                     ProgressDialogUtils.closeProgressDialog();
                                     common.showAlertType(owmsExceptionMessage, LoginActivity.this, getApplicationContext());
                                     return;
-
                                 }
                             } else {
 
@@ -422,8 +418,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
                                     if (oProfileDto.getUserRole() != null) {
                                         sharedPreferencesUtils.savePreference("UserRole", oProfileDto.getUserRole());
                                     }
-
-
+                                    
                                 } catch (Exception ex) {
                                     try {
                                         exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "001", LoginActivity.this);
@@ -431,7 +426,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
-
                                 }
                             }
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
@@ -546,8 +540,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
                                 e.printStackTrace();
                             }
                             logException();*/
-
-
                             Log.d("Message", core.getEntityObject().toString());
                         }
                     }

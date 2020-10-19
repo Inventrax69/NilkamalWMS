@@ -154,7 +154,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
         headerList.add(menuModel);
     }
 
-
     // HU menu
     private void prepareMenuDataHU() {
 
@@ -256,7 +255,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
             childList.put(menuModel, null);
         }
     }
-
 
     // HH menu
     private void prepareMenuDataHH() {
