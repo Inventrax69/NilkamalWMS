@@ -85,5 +85,25 @@ public class ScanValidator {
             return false;
         }
     }
+    public static boolean IsBundleScanOnBundling(String scannedData)
+    {
+        if (scannedData.length() == 17 && scannedData.substring(0,1).equals("B"))
+            return true;
+        else
+            return false;
+    }
+
+
+    public static boolean IsBundleRSN(String scannedData)
+    {
+        if (scannedData.split("[_]").length==2 )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NilkamalWMS.iml" filepath="$PROJECT_DIR$/NilkamalWMS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/NilkamalWMS-app.iml" filepath="$PROJECT_DIR$/app/NilkamalWMS-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NilkamalWMS_Bhiwandi.iml" filepath="$PROJECT_DIR$/.idea/modules/NilkamalWMS_Bhiwandi.iml" group="NilkamalWMS_Bhiwandi" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NilkamalWMS_Bhiwandi-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NilkamalWMS_Bhiwandi-app.iml" group="NilkamalWMS_Bhiwandi/app" />
       <module fileurl="file://$PROJECT_DIR$/Pandu-NilkamalWMS.iml" filepath="$PROJECT_DIR$/Pandu-NilkamalWMS.iml" group="NilkamalWMS" />
       <module fileurl="file://$PROJECT_DIR$/app/Pandu-NilkamalWMS-app.iml" filepath="$PROJECT_DIR$/app/Pandu-NilkamalWMS-app.iml" group="NilkamalWMS/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

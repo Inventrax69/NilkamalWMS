@@ -1,15 +1,10 @@
 package com.inventrax.athome.interfaces;
 
 import com.inventrax.athome.pojos.WMSCoreMessage;
-
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-
-
 public interface ApiInterface {
-
     @POST("Login/UserLogin")
     Call<String> UserLogin(@Body WMSCoreMessage oRequest);
 
@@ -278,5 +273,98 @@ public interface ApiInterface {
     @POST("ECOM/PrintEcomLabelsForFurniture")
     Call<String> PrintEcomLabelsForFurniture(@Body WMSCoreMessage oRequest);
 
+    //Recently added apis to this project
+
+    @POST("VLPD/VNABintoBinMovement")
+    Call<String> VNABintoBinMovement(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/VNAPalletValidation")
+    Call<String> VNAPalletValidation(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/PalletValidationForPtoP")
+    Call<String> PalletValidationForPtoP(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/PallettoPalletMovement")
+    Call<String> PallettoPalletMovement(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/PickingandShortingSkip")
+    Call<String> PickingandShortingSkip(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/PickingandShortingDockValidation")
+    Call<String> PickingandShortingDockValidation(@Body WMSCoreMessage oRequest);
+
+
+
+    @POST("VLPD/GetOpenVLPDList")
+    Call<String> GetOpenVLPDList(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/GetVNAPickingandShortingList")
+    Call<String> GetVNAPickingandShortingList(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/PrintNewRSN")
+    Call<String> PrintNewRSN(@Body WMSCoreMessage oRequest);
+    @POST("VLPD/PickandCheck")
+    Call<String> PickandCheck(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/GetPalletValidationandSuggestion")
+    Call<String> GetPalletValidationandSuggestion(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/GetVLPDPendingPalletCheck")
+    Call<String> GetVLPDPendingPalletCheck(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/ExportPendingPallet")
+    Call<String> ExportPendingPallet(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/UpsertBintoBinTransfer")
+    Call<String> UpsertBintoBinTransfer(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/SlocPickandCheck")
+    Call<String> SlocPickandCheck(@Body WMSCoreMessage oRequest);
+
+    @POST("Inbound/UnbundleProccess")
+    Call<String> UnbundleProccess(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/GetSlocVNAPickingandShortingList")
+    Call<String> GetSlocVNAPickingandShortingList(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/VNAPalletScan")
+    Call<String> VNAPalletScan(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/GeneratePutawayandPickingSuggestion")
+    Call<String> GeneratePutawayandPickingSuggestion(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/StopSuggestion")
+    Call<String> StopSuggestion(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/GetVNAPutawaySuggestion")
+    Call<String> GetVNAPutawaySuggestion(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/CheckPalletandLocationValidation")
+    Call<String> CheckPalletandLocationValidation(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/VNASuggestion")
+    Call<String> VNASuggestion(@Body WMSCoreMessage oRequest);
+
+
+    @POST("PutAway/VNApickingSkip")
+    Call<String> VNApickingSkip(@Body WMSCoreMessage oRequest);
+
+    @POST("PutAway/PutawayandpickingSkip")
+    Call<String> PutawayandpickingSkip(@Body WMSCoreMessage oRequest);
+
+
+    @POST("VLPD/GetOpenVNALOADLIST")
+    Call<String> GetOpenVNALOADLIST(@Body WMSCoreMessage oRequest);
+
+
+    @POST("VLPD/getVNAPendingLoadingCount")
+    Call<String> getVNAPendingLoadingCount(@Body WMSCoreMessage oRequest);
+
+    @POST("VLPD/VNAuniqueRSNLoading")
+    Call<String> VNAuniqueRSNLoading(@Body WMSCoreMessage oRequest);
+
+
+    @POST("Inbound/GetPalletValidation")
+    Call<String> GetPalletValidation(@Body WMSCoreMessage oRequest);
 
 }

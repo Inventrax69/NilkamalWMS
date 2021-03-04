@@ -32,7 +32,8 @@
     <color name="rsnColor">#2B7C97</color>
     <color name="scanColor">#51AB9C</color>
     <color name="statusColor">#9BD7F7</color>
-
+    <color name="spalletColor">#FFEB3B</color>
+    <color name="lightblack">#555555</color>
     <!-- Application Main Outlook Colors -->
 
 

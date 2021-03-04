@@ -308,4 +308,21 @@
     <string name="so_num">SO Number</string>
     <string name="btnStart">Start</string>
     <string name="group_vlpd_number">Group VLPD Number</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    //recetly added strings folder
+    <string name="title_activity_vna_bin_to_bin">VNA Bin To Bin</string>
+
+    <string name="title_activity_to_in_drop_location">To In-Drop Location</string>
+    <string name="title_activity_pallet_to_pallet">Pallet to Pallet</string>
+    <string name="title_activity_vna_transfer">VNA Transfers</string>
+    <string name="title_activity_picking_sorting">Picking &amp; Sorting</string>
+    <string name="with_mrp">With MRP</string>
+    <string name="without_mrp">Without MRP</string>
+    <string name="title_activity_vna_loading">VNA Loading</string>
+    <string name="title_activity_vna_sloc_to_sloc">VNA SLoc to SLoc</string>
+    <string name="from_pallet">From Pallet</string>
+    <string name="to_pallet">To Pallet</string>
 </resources>

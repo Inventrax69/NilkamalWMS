@@ -150,5 +150,29 @@ public class ErrorMessages {
 
     public String EMC_083 = "Please Select Ref No.";
 
+    public String EMC_084 = "Please scan 'Suggested Location'";
+
+    public String EMC_085 = "Please scan suggested 'Actual location'";
+
+    public String EMC_086 = "Please scan suggested 'Suggested location'";
+
+    public String EMC_087 = "Please scan suggested pallet";
+
+    public String EMC_088 = "Please scan valid pallet";
+
+    public String EMC_089 = "No Suggestion yet";
+
+    public String EMC_090 = "Please scan 'Actual location' and pallet to skip";
+
+    public String EMC_091 = "Please scan valid dock location";
+
+    public String EMC_092 = "Error : While picking";
+
+    public String EMC_093 = "No more items to be picked from this pallet";
+
+    public String EMC_094 = "Please scan 'From pallet'";
+
+    public String EMC_095 = "Please select Store Ref#";
+
 
 }

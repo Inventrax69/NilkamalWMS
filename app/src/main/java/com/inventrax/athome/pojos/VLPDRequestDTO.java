@@ -25,7 +25,21 @@ public class VLPDRequestDTO {
     @SerializedName("IsNew")
     private String IsNew;
 
-   /* @SerializedName("ReqQuantity")
+
+    @SerializedName("VLPDNumber")
+    private String VLPDNumber;
+
+
+    @SerializedName("ID")
+    private String ID;
+
+
+
+
+    @SerializedName("RSNNumber")
+    private String RSNNumber;
+
+    /* @SerializedName("ReqQuantity")
     private int reqQuantity;*/
     @SerializedName("InputType")
     private List<ItemInfoDTO> inputType ;
@@ -82,6 +96,21 @@ public class VLPDRequestDTO {
                 case "IsNew":
                     if(entry.getValue()!=null) {
                         this.setIsNew(entry.getValue().toString());
+                    }
+                    break;
+                case "ID":
+                    if(entry.getValue()!=null) {
+                        this.setID(entry.getValue().toString());
+                    }
+                    break;
+                case "RSNNumber":
+                    if(entry.getValue()!=null) {
+                        this.setRSNNumber(entry.getValue().toString());
+                    }
+                    break;
+                case "VLPDNumber":
+                    if(entry.getValue()!=null) {
+                        this.setVLPDNumber(entry.getValue().toString());
                     }
                     break;
                 case "InputType":
@@ -179,4 +208,31 @@ public class VLPDRequestDTO {
     public void setInputType(List<ItemInfoDTO> inputType) {
         this.inputType = inputType;
     }
+
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getRSNNumber() {
+        return RSNNumber;
+    }
+
+    public void setRSNNumber(String RSNNumber) {
+        this.RSNNumber = RSNNumber;
+    }
+
+    public String getVLPDNumber() {
+        return VLPDNumber;
+    }
+
+    public void setVLPDNumber(String VLPDNumber) {
+        this.VLPDNumber = VLPDNumber;
+    }
+
+
 }
