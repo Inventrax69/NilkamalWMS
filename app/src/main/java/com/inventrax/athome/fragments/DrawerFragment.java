@@ -39,19 +39,13 @@ import com.inventrax.athome.fragments.HU.CycleCountFragmentHU;
 import com.inventrax.athome.fragments.HU.EcomMarketPlacePackingFragment;
 import com.inventrax.athome.fragments.HU.MapPalletDockLoc;
 import com.inventrax.athome.fragments.HU.MattressesPrintFragmentHU;
-import com.inventrax.athome.fragments.HU.PalletToPalletHU;
 import com.inventrax.athome.fragments.HU.PickFragmentHU;
 import com.inventrax.athome.fragments.HU.PickOnDemandFragmentHU;
-import com.inventrax.athome.fragments.HU.PickingSortingtHU;
 import com.inventrax.athome.fragments.HU.PutawayFragmentHU;
 import com.inventrax.athome.fragments.HU.ReceiveFromSiteFragmentHU;
 import com.inventrax.athome.fragments.HU.SLocToSLocFragment;
 import com.inventrax.athome.fragments.HU.SkuToSkuFragment;
-import com.inventrax.athome.fragments.HU.ToInDropLocationHU;
 import com.inventrax.athome.fragments.HU.VLPDLoadingFragment;
-import com.inventrax.athome.fragments.HU.VNABinToBinFragmentHU;
-import com.inventrax.athome.fragments.HU.VNALoadingFragment;
-import com.inventrax.athome.fragments.HU.VNATranfersFragmentHU;
 import com.inventrax.athome.fragments.StockTake.StockTakeFragment;
 import com.inventrax.athome.model.MenuModel;
 import com.inventrax.athome.model.NavDrawerItem;
@@ -84,18 +78,13 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
     private IntentFilter mIntentFilter;
 
     private String userName,UserRole;
-
     private String division, menuLink;
-
     SharedPreferences sp;
 
 
     ExpandableListAdapter expandableListAdapter;
-
     ExpandableListView expandableListView;
-
     List<MenuModel> headerList = new ArrayList<>();
-
     HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
 
     public void setDrawerListener(FragmentDrawerListener listener) {
@@ -259,42 +248,12 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
             childList.put(menuModel, childModelsList);
         }
 
-
-        menuModel = new MenuModel("VNA", true, true, "VNA");
-        headerList.add(menuModel);
-
-        childModelsList = new ArrayList<>();
-
-        childModel = new MenuModel("VNA Transfers", false, false, "VNA Transfers");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("VNA Bin To Bin", false, false, "VNA Bin To Bin");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("VNA Pallet to Pallet", false, false, "VNA Pallet to Pallet");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("Picking & Sorting", false, false, "Picking & Sorting");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("VNA Loading", false, false, "VNA Loading");
-        childModelsList.add(childModel);
-        childModel = new MenuModel("To In-Drop Location", false, false, "To In-Drop Location");
-        childModelsList.add(childModel);
-
-        if (menuModel.hasChildren) {
-            childList.put(menuModel, childModelsList);
-        }
-
         menuModel = new MenuModel("Cycle Count", true, false, "Cycle Count");
         headerList.add(menuModel);
 
         if (!menuModel.hasChildren) {
             childList.put(menuModel, null);
         }
-
-
-
     }
 
     // HH menu
@@ -392,32 +351,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
         if (!menuModel.hasChildren) {
             childList.put(menuModel, null);
         }
-
-        menuModel = new MenuModel("VNA", true, true, "VNA");
-        headerList.add(menuModel);
-
-        childModelsList = new ArrayList<>();
-
-        childModel = new MenuModel("VNA Transfers", false, false, "VNA Transfers");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("VNA Bin To Bin", false, false, "VNA Bin To Bin");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("VNA Pallet to Pallet", false, false, "VNA Pallet to Pallet");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("Picking & Sorting", false, false, "Picking & Sorting");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("VNA Loading", false, false, "VNA Loading");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("To In-Drop Location", false, false, "To In-Drop Location");
-        childModelsList.add(childModel);
-        if (menuModel.hasChildren) {
-            childList.put(menuModel, childModelsList);
-        }
     }
 
     private void populateExpandableList() {
@@ -476,6 +409,8 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                     break;
             }
         } else if (division.equals("HU")) {                            // HU menu item navigation clicks
+
+
             switch (menuLink) {
 
                 case "Goods-In":
@@ -545,37 +480,12 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 case "ECOM Loading":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new ECOMLoadingFragment());
                     break;
-                    // Recently added files
-                case "VNA Bin To Bin":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new VNABinToBinFragmentHU());
-                    break;
-
-                case "VNA Pallet to Pallet":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new PalletToPalletHU());
-                    break;
-
-                case "Picking & Sorting":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new PickingSortingtHU());
-                    break;
-
-                case "VNA Transfers":
-                   // if (userName.equalsIgnoreCase("VNA"))
-                        FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new VNATranfersFragmentHU());
-                    break;
-
-
-                case "VNA Loading":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new VNALoadingFragment());
-                    break;
-
-                case "To In-Drop Location":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new ToInDropLocationHU());
-                    break;
 
 
             }
         } else {
             switch (menuLink) {                                   // HH menu item navigation clicks
+
                 case "Goods-In":
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new UnloadingFragment());
                     break;
@@ -640,30 +550,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                     FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new CycleCountFragmentHH());
                     break;
 
-                case "VNA Bin To Bin":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new VNABinToBinFragmentHU());
-                    break;
 
-                case "VNA Pallet to Pallet":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new PalletToPalletHU());
-                    break;
-
-                case "Picking & Sorting":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new PickingSortingtHU());
-                    break;
-
-                case "VNA Transfers":
-                    //if (userName.equalsIgnoreCase("VNA"))
-                        FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new VNATranfersFragmentHU());
-                    break;
-
-                case "VNA Loading":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new VNALoadingFragment());
-                    break;
-
-                case "To In-Drop Location":
-                    FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new ToInDropLocationHU());
-                    break;
             }
         }
 

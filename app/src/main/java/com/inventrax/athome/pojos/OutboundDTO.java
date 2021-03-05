@@ -1,6 +1,5 @@
 package com.inventrax.athome.pojos;
 
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
@@ -12,10 +11,6 @@ public class OutboundDTO {
     private String OBDNumber;
     @SerializedName("SKU")
     private String SKU;
-
-
-    @SerializedName("Mcode")
-    private String Mcode;
     @SerializedName("MDescription")
     private String MDescription;
     @SerializedName("RequiredQty")
@@ -57,55 +52,25 @@ public class OutboundDTO {
     @SerializedName("Barcode")
     private String barcode;
     @SerializedName("BarcodeType")
-    private String barcodeType;
+    private String barcodeType ;
     @SerializedName("BatchNo")
     private String batchNo;
-
     @SerializedName("Location")
     private String location;
-
     @SerializedName("AvailQuantity")
     private String availQuantity;
-
     @SerializedName("HUNumber")
     private String HUNumber;
-
     @SerializedName("HUsize")
     private String HUsize;
-
     @SerializedName("Sloc")
     private String sLoc;
-
     @SerializedName("IpAddress")
     private String ipAddress;
-
     @SerializedName("Result")
     private String result;
-
     @SerializedName("VlpdNumber")
     private String VlpdNumber;
-
-    @SerializedName("PalletNo")
-    private String PalletNo;
-
-    @SerializedName("ExpDate")
-    private String ExpDate;
-
-    @SerializedName("MfgDate")
-    private String MfgDate;
-
-    @SerializedName("FromPalletno")
-    private String FromPalletno;
-
-    @SerializedName("UniqueRSN")
-    private String UniqueRSN;
-
-    @SerializedName("NewUniqueRSN")
-    private String NewUniqueRSN;
-
-
-    @SerializedName("AssignedId")
-    private String AssignedId;
 
     public  OutboundDTO()
     { }
@@ -139,7 +104,7 @@ public class OutboundDTO {
                     break;
                 case "PendigQty":
                     if(entry.getValue()!=null) {
-                        this.setPendigQty(entry.getValue().toString());
+                        this.setSKUPendingQty(entry.getValue().toString());
                     }
                     break;
                 case "EAN":
@@ -204,6 +169,7 @@ public class OutboundDTO {
                     if(entry.getValue()!=null) {
                         this.setSKUReqQty(entry.getValue().toString());
                     }
+
                     break;
                 case   "SKUPendingQty":
                     if(entry.getValue()!=null) {
@@ -279,46 +245,6 @@ public class OutboundDTO {
                 case   "VlpdNumber":
                     if(entry.getValue()!=null) {
                         this.setVlpdNumber(entry.getValue().toString());
-                    }
-                    break;
-                case   "PalletNo":
-                    if(entry.getValue()!=null) {
-                        this.setPalletNo(entry.getValue().toString());
-                    }
-                    break;
-                case   "FromPalletno":
-                    if(entry.getValue()!=null) {
-                        this.setFromPalletno(entry.getValue().toString());
-                    }
-                    break;
-                case   "Mcode":
-                    if(entry.getValue()!=null) {
-                        this.setMcode(entry.getValue().toString());
-                    }
-                    break;
-                case   "MfgDate":
-                    if(entry.getValue()!=null) {
-                        this.setMfgDate(entry.getValue().toString());
-                    }
-                    break;
-                case   "ExpDate":
-                    if(entry.getValue()!=null) {
-                        this.setExpDate(entry.getValue().toString());
-                    }
-                    break;
-                case   "UniqueRSN":
-                    if(entry.getValue()!=null) {
-                        this.setUniqueRSN(entry.getValue().toString());
-                    }
-                    break;
-                case   "NewUniqueRSN":
-                    if(entry.getValue()!=null) {
-                        this.setNewUniqueRSN(entry.getValue().toString());
-                    }
-                    break;
-                case   "AssignedId":
-                    if(entry.getValue()!=null) {
-                        this.setAssignedId(entry.getValue().toString());
                     }
                     break;
 
@@ -581,72 +507,5 @@ public class OutboundDTO {
 
     public void setVlpdNumber(String vlpdNumber) {
         VlpdNumber = vlpdNumber;
-    }
-
-    public String getPalletNo() {
-        return PalletNo;
-    }
-
-    public void setPalletNo(String palletNo) {
-        PalletNo = palletNo;
-    }
-
-
-    public String getFromPalletno() {
-        return FromPalletno;
-    }
-
-    public void setFromPalletno(String fromPalletno) {
-        FromPalletno = fromPalletno;
-    }
-
-
-    public String getMcode() {
-        return Mcode;
-    }
-
-    public void setMcode(String mcode) {
-        Mcode = mcode;
-    }
-
-    public String getExpDate() {
-        return ExpDate;
-    }
-
-    public void setExpDate(String expDate) {
-        ExpDate = expDate;
-    }
-
-    public String getMfgDate() {
-        return MfgDate;
-    }
-
-    public void setMfgDate(String mfgDate) {
-        MfgDate = mfgDate;
-    }
-
-    public String getUniqueRSN() {
-        return UniqueRSN;
-    }
-
-    public void setUniqueRSN(String uniqueRSN) {
-        UniqueRSN = uniqueRSN;
-    }
-
-    public String getNewUniqueRSN() {
-        return NewUniqueRSN;
-    }
-
-    public void setNewUniqueRSN(String newUniqueRSN) {
-        NewUniqueRSN = newUniqueRSN;
-    }
-
-
-    public String getAssignedId() {
-        return AssignedId;
-    }
-
-    public void setAssignedId(String assignedId) {
-        AssignedId = assignedId;
     }
 }

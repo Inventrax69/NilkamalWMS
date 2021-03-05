@@ -130,6 +130,7 @@ public class CycleCountFragmentHH extends Fragment implements View.OnClickListen
         lblDesc = (TextView) rootView.findViewById(R.id.lblDesc);
         lblSKU = (TextView) rootView.findViewById(R.id.lblSKU);
         lblQty = (TextView) rootView.findViewById(R.id.lblQty);
+
         cvScanLocation = (CardView) rootView.findViewById(R.id.cvScanLocation);
         cvScan = (CardView) rootView.findViewById(R.id.cvScan);
 
@@ -233,8 +234,11 @@ public class CycleCountFragmentHH extends Fragment implements View.OnClickListen
                 FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, new HomeFragment());
                 break;
             case R.id.btnClear:
+
                 ClearFields();
+
                 lblScannedSku.setText("");
+
                 break;
             case R.id.btnClearBin:
                 clearBin();
@@ -277,8 +281,11 @@ public class CycleCountFragmentHH extends Fragment implements View.OnClickListen
         }
     }
 
-    public void goToExport(){
+    public void goToExport() {
+
+
         Bundle bundle = new Bundle();
+
         bundle.putString("loc", lblLocation.getText().toString());
         bundle.putString("count", lblCount.getText().toString());
         bundle.putString("barcode", lblScannedSku.getText().toString());
@@ -286,21 +293,29 @@ public class CycleCountFragmentHH extends Fragment implements View.OnClickListen
         bundle.putString("desc", lblDesc.getText().toString());
         bundle.putString("qty", lblQty.getText().toString());
         bundle.putString("ccQty", etCCQty.getText().toString());
+
         bundle.putSerializable("cycleCountDto", ccDto);
         bundle.putBoolean("cleaBinState", cleaBinState);
         bundle.putBoolean("exportState", exportState);
+
+
         PendingCyclecountFragment pendingCyclecountFragment = new PendingCyclecountFragment();
         pendingCyclecountFragment.setArguments(bundle);
+
         FragmentUtils.replaceFragmentWithBackStack(getActivity(), R.id.container_body, pendingCyclecountFragment);
     }
 
-    public void clearBin(){
+    public void clearBin() {
+
        /* cvScanLocation.setCardBackgroundColor(getResources().getColor(R.color.locationColor));
         ivScanLocation.setImageResource(R.drawable.fullscreen_img);
+
         lblLocation.setText("");
         lblCount.setText("");
         ClearFields();*/
+
         clearBinapi();
+
     }
 
     private void clearBinapi() {
@@ -331,7 +346,7 @@ public class CycleCountFragmentHH extends Fragment implements View.OnClickListen
                 // return;
                 // }
 
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 try {
                     exceptionLoggerUtils.createExceptionLog(ex.toString(), classCode, "ClearBin_01", getActivity());
                     logException();
@@ -650,9 +665,12 @@ public class CycleCountFragmentHH extends Fragment implements View.OnClickListen
     public void clearAfterConfirmbin() {
         lblScannedSku.setText("");
         etCCQty.setText("");
+
         btnConfirm.setEnabled(false);
         btnConfirm.setTextColor(getResources().getColor(R.color.black));
         btnConfirm.setBackgroundResource(R.drawable.button_hide);
+
+
     }
 
     private void getActualAndCCQuantiitesByLocation() {
